@@ -7,6 +7,7 @@ services:
         build:
             context: .
         image: skywalking-booster-ui:latest
+        restart: always
         ports:
             # 指定端口映射，类似 docker run 的 -p 选项，注意使用字符串形式
             # [local port]:[container port]
