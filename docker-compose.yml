@@ -1,0 +1,40 @@
+version: '3'
+services:
+    #   App Docker
+    skywalkingBoosterUI:                       # Service Name
+        container_name: skywalking-booster-ui
+        hostname: skywalking-booster-ui
+        build:
+            context: .
+        image: skywalking-booster-ui:latest
+        ports:
+            # 指定端口映射，类似 docker run 的 -p 选项，注意使用字符串形式
+            # [local port]:[container port]
+            - "1810:1810"
+        extra_hosts:
+            - "host.docker.internal:192.168.3.186"
+        #volumes:
+            #- ./deploy/etc/hosts:/etc/hosts:ro
+            #- ./deploy/etc/localtime:/etc/localtime:ro
+            #- ./deploy/etc/timezone:/etc/timezone:ro
+        env_file:
+            - ./.env
+
+#        environment:
+#            - REDIS_HOST=redis
+#            - REDIS_PORT=6379
+#            - NODE_ENV=production
+#        depends_on:
+#            redis:
+#                condition: service_healthy
+#        links:
+#            - redis
+#
+#    #   Redis Docker
+#    redis:
+#        image: redis:latest
+#        healthcheck:
+#            test: ["CMD", "redis-cli", "ping"]
+#            interval: 1s
+#            timeout: 2s
+#            retries: 10

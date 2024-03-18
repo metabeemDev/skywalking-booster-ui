@@ -17,45 +17,11 @@
 # under the License.
 #
 
-# local env files
-.env.local
-.env.*.local
+#!/bin/sh
+command_exists () {
+  command -v "$1" >/dev/null 2>&1
+}
 
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node
-node_modules
-.DS_Store
-dist
-dist-ssr
-coverage
-*.local
-
-/cypress/videos/
-/cypress/screenshots/
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# Editor directories and files
-.idea
-.vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+if command_exists winpty && test -t 1; then
+  exec < /dev/tty
+fi
